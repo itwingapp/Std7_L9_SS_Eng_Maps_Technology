@@ -9,34 +9,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
 *{box-sizing:border-box}
-body{font-family:'Nunito',sans-serif;background:#ecfdf5;color:#0f172a;overflow-x:hidden;word-wrap:break-word}
-.app-container{max-width:800px;margin:0 auto;min-height:100vh;background:#fff;box-shadow:0 4px 6px -1px rgba(0,0,0,.1);overflow-x:hidden}
-.screen{display:none;padding:16px;animation:fadeIn .3s;overflow-x:hidden;word-break:break-word}
+html{overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{font-family:'Nunito',sans-serif;background:#ecfdf5;color:#0f172a;overflow-x:hidden;word-wrap:break-word;overflow-wrap:anywhere;hyphens:auto}
+.app-container{max-width:800px;margin:0 auto;min-height:100vh;background:#fff;box-shadow:0 4px 6px -1px rgba(0,0,0,.1);overflow-x:hidden;width:100%}
+.screen{display:none;padding:16px;animation:fadeIn .3s;overflow-x:hidden;word-break:break-word;overflow-wrap:anywhere;max-width:100%}
 .screen.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.btn-main{padding:14px 16px;border-radius:12px;font-weight:700;display:flex;align-items:center;gap:12px;width:100%;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.2);text-align:left;font-size:0.95rem;line-height:1.35}
+.btn-main{padding:14px 16px;border-radius:12px;font-weight:700;display:flex;align-items:center;gap:12px;width:100%;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.2);text-align:left;font-size:0.95rem;line-height:1.35;overflow-wrap:anywhere;word-break:break-word;min-height:52px}
 .btn-main:active{transform:translateY(4px);box-shadow:none}
 .btn-action{background:#059669;color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;box-shadow:0 4px 0 #047857;cursor:pointer;border:none}
-.header{background:#047857;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-radius:14px;margin-bottom:16px;gap:8px}
-.header h1{font-size:1.05rem;font-weight:700;margin:0;flex:1;overflow:hidden;text-overflow:ellipsis}
+.header{background:#047857;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-radius:14px;margin-bottom:16px;gap:8px;overflow:hidden}
+.header h1{font-size:1.05rem;font-weight:700;margin:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .back-btn{background:rgba(255,255,255,.25);border:none;color:#fff;font-size:1.15rem;padding:4px 12px;border-radius:8px;cursor:pointer;flex-shrink:0}
-.category-card{background:#ecfdf5;border:2px solid #a7f3d0;border-radius:16px;padding:14px;margin-bottom:16px}
-.category-title{font-size:1.1rem;font-weight:700;margin-bottom:12px;border-bottom:2px dashed #34d399;padding-bottom:6px}
-.content-card{background:#fff;border:2px solid #6ee7b7;border-radius:12px;padding:14px;margin-bottom:14px;overflow-x:hidden;word-break:break-word}
-.quiz-opt,.match-item{padding:12px;background:#ecfdf5;border:2px solid #6ee7b7;border-radius:8px;cursor:pointer;text-align:center;font-weight:700;font-size:0.92rem}
+.category-card{background:#ecfdf5;border:2px solid #a7f3d0;border-radius:16px;padding:14px;margin-bottom:16px;overflow:hidden}
+.category-title{font-size:1.1rem;font-weight:700;margin-bottom:12px;border-bottom:2px dashed #34d399;padding-bottom:6px;overflow-wrap:anywhere}
+.content-card{background:#fff;border:2px solid #6ee7b7;border-radius:12px;padding:14px;margin-bottom:14px;overflow-x:hidden;word-break:break-word;overflow-wrap:anywhere;max-width:100%}
+.quiz-opt,.match-item{padding:12px;background:#ecfdf5;border:2px solid #6ee7b7;border-radius:8px;cursor:pointer;text-align:center;font-weight:700;font-size:0.92rem;overflow-wrap:anywhere;word-break:break-word}
 .match-item.selected{background:#a7f3d0;border-color:#059669}
 .match-item.matched{background:#bbf7d0;border-color:#16a34a;color:#16a34a}
 .memory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.memory-card{aspect-ratio:1;background:#10b981;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:transparent;cursor:pointer;box-shadow:0 4px 0 #047857;padding:4px;text-align:center;overflow:hidden}
+.memory-card{aspect-ratio:1;background:#10b981;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:transparent;cursor:pointer;box-shadow:0 4px 0 #047857;padding:4px;text-align:center;overflow:hidden;word-break:break-word}
 .memory-card.revealed,.memory-card.matched{background:#fff;color:#1f2937;border:2px solid #10b981;box-shadow:none}
 .memory-card.matched{background:#d1fae5;border-color:#059669}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:12px 24px;border-radius:8px;z-index:1000;display:none;opacity:0;font-weight:700;max-width:90%;text-align:center}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:12px 24px;border-radius:8px;z-index:1000;display:none;opacity:0;font-weight:700;max-width:90%;text-align:center;overflow-wrap:anywhere}
 .toast.show{display:block;opacity:1}
 .race-track{height:40px;background:#d1fae5;border-radius:20px;position:relative;margin:16px 0;border:2px solid #6ee7b7}
 .car{font-size:1.8rem;position:absolute;top:-4px;left:0;transition:left .3s}
-.formula{background:#ecfdf5;border-left:4px solid #059669;padding:10px 12px;border-radius:8px;margin:8px 0;font-weight:600;font-size:0.95rem}
+.formula{background:#ecfdf5;border-left:4px solid #059669;padding:10px 12px;border-radius:8px;margin:8px 0;font-weight:600;font-size:0.95rem;overflow-wrap:anywhere;word-break:break-word}
+.home-grid{display:grid;grid-template-columns:1fr !important;gap:10px !important}
 @media (max-width:640px){
-  .home-grid{grid-template-columns:1fr !important;gap:10px !important}
   .btn-main{min-height:56px;font-size:1rem;padding:16px}
   .screen{padding:12px}
 }
@@ -59,7 +60,7 @@ body{font-family:'Nunito',sans-serif;background:#ecfdf5;color:#0f172a;overflow-x
     <div class="grid home-grid grid-cols-1 gap-3 mb-3">
       <button class="btn-main bg-teal-600" onclick="showScreen('readLessonScreen')"><span class="text-2xl">🔊</span> Read the Lesson</button>
     </div>
-    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="grid home-grid grid-cols-1 gap-3">
       <button class="btn-main bg-emerald-500" onclick="showScreen('learn1')"><span class="text-2xl">🗺️</span> Why Maps?</button>
       <button class="btn-main bg-green-500" onclick="showScreen('learn2')"><span class="text-2xl">🌍</span> Globe vs Map</button>
       <button class="btn-main bg-teal-500" onclick="showScreen('learn3')"><span class="text-2xl">📑</span> Types of Maps</button>
@@ -71,7 +72,7 @@ body{font-family:'Nunito',sans-serif;background:#ecfdf5;color:#0f172a;overflow-x
 
   <div class="category-card">
     <h3 class="category-title text-emerald-800">🎯 2. Know the Concepts</h3>
-    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="grid home-grid grid-cols-1 gap-3">
       <button class="btn-main bg-pink-500" onclick="initTerm();showScreen('tmScreen')"><span class="text-2xl">📚</span> Key Terms</button>
       <button class="btn-main bg-rose-500" onclick="initDiff();showScreen('dfScreen')"><span class="text-2xl">⚖️</span> Globe or Map?</button>
       <button class="btn-main bg-red-500" onclick="initTrue();showScreen('trueScreen')"><span class="text-2xl">✅</span> True or False</button>
@@ -85,7 +86,7 @@ body{font-family:'Nunito',sans-serif;background:#ecfdf5;color:#0f172a;overflow-x
 
   <div class="category-card">
     <h3 class="category-title text-emerald-800">🧩 3. Explore & Reflect</h3>
-    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="grid home-grid grid-cols-1 gap-3">
       <button class="btn-main bg-emerald-600" onclick="initClassify();showScreen('clScreen')"><span class="text-2xl">📂</span> Classify Maps</button>
       <button class="btn-main bg-green-600" onclick="initConnect();showScreen('cnScreen')"><span class="text-2xl">🔗</span> Connect A–B</button>
       <button class="btn-main bg-teal-600" onclick="initSituation();showScreen('stScreen')"><span class="text-2xl">📍</span> When to Use Map</button>
@@ -99,7 +100,7 @@ body{font-family:'Nunito',sans-serif;background:#ecfdf5;color:#0f172a;overflow-x
 
   <div class="category-card">
     <h3 class="category-title text-emerald-800">🎮 4. Play & Learn</h3>
-    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="grid home-grid grid-cols-1 gap-3">
       <button class="btn-main bg-cyan-500" onclick="initMem();showScreen('memScreen')"><span class="text-2xl">🃏</span> Memory Match</button>
       <button class="btn-main bg-sky-600" onclick="initRace();showScreen('raceScreen')"><span class="text-2xl">🏎️</span> Map Race</button>
       <button class="btn-main bg-blue-600" onclick="initQuick();showScreen('quickScreen')"><span class="text-2xl">⚡</span> Speed Quiz</button>
@@ -113,13 +114,12 @@ body{font-family:'Nunito',sans-serif;background:#ecfdf5;color:#0f172a;overflow-x
 
   <div class="category-card">
     <h3 class="category-title text-emerald-800">🌟 5. Do & Apply</h3>
-    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="grid home-grid grid-cols-1 gap-3">
       <button class="btn-main bg-indigo-500" onclick="showScreen('vocabScreen')"><span class="text-2xl">📇</span> Word Cards</button>
       <button class="btn-main bg-violet-500" onclick="initPairGame();showScreen('pairScreen')"><span class="text-2xl">🔗</span> Map Pair Game</button>
       <button class="btn-main bg-purple-500" onclick="initClue();showScreen('clueScreen')"><span class="text-2xl">🕵️</span> Clue Detective</button>
       <button class="btn-main bg-fuchsia-500" onclick="initSort();showScreen('sortScreen')"><span class="text-2xl">📦</span> Physical or Cultural?</button>
       <button class="btn-main bg-pink-500" onclick="initFill();showScreen('fillScreen')"><span class="text-2xl">✍️</span> Fill the Blanks</button>
-      
       <button class="btn-main bg-amber-600" onclick="showScreen('shortAnsScreen')"><span class="text-2xl">✏️</span> Short Answers</button>
       <button class="btn-main bg-orange-600" onclick="showScreen('writeAnsScreen')"><span class="text-2xl">📝</span> Write Answers</button>
       <button class="btn-main bg-rose-500" onclick="showScreen('followScreen')"><span class="text-2xl">📌</span> Follow-up Tasks</button>
@@ -128,7 +128,7 @@ body{font-family:'Nunito',sans-serif;background:#ecfdf5;color:#0f172a;overflow-x
 
   <div class="category-card">
     <h3 class="category-title text-emerald-800">📝 6. Exam Corner</h3>
-    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="grid home-grid grid-cols-1 gap-3">
       <button class="btn-main bg-teal-600" onclick="initQuiz();showScreen('quizScreen')"><span class="text-2xl">❓</span> Mega Quiz</button>
       <button class="btn-main bg-emerald-600" onclick="showScreen('matchScreen')"><span class="text-2xl">🔗</span> Cross Match</button>
       <button class="btn-main bg-green-600" onclick="showScreen('modelQPScreen')"><span class="text-2xl">📋</span> Model Question Paper</button>
@@ -413,19 +413,96 @@ const lessonParas=[
   "Digital maps on phones and vehicles help us navigate. Technology and satellites support modern mapping and GPS.",
   "Each map has a title based on its function. Different maps are used to represent different geographical features clearly."
 ];
-let readAllOn=false,readIdx=0;
-function renderLessonParas(){const box=document.getElementById('lessonParas');if(!box)return;box.innerHTML='';
-lessonParas.forEach((p,i)=>{const div=document.createElement('div');div.className='p-3 rounded-xl bg-emerald-50 border-l-4 border-emerald-500 flex gap-2 items-start';div.id='para'+i;
-div.innerHTML='<p class="flex-1 text-base leading-relaxed">'+p+'</p><button class="bg-emerald-600 text-white w-10 h-10 rounded-full flex-shrink-0" onclick="readPara('+i+')">▶</button>';box.appendChild(div);});}
-function highlightPara(i){document.querySelectorAll('#lessonParas > div').forEach(d=>d.classList.remove('bg-yellow-100','ring-2','ring-emerald-500'));
-const el=document.getElementById('para'+i);if(el){el.classList.add('bg-yellow-100','ring-2','ring-emerald-500');el.scrollIntoView({behavior:'smooth',block:'center'});}}
-function readPara(i){if(!('speechSynthesis' in window)){showToast('Speech not supported',1500,false);return;}
-window.speechSynthesis.cancel();highlightPara(i);const u=new SpeechSynthesisUtterance(lessonParas[i]);u.lang='en-IN';u.rate=0.9;
-u.onend=()=>{if(readAllOn&&i+1<lessonParas.length){readIdx=i+1;readPara(readIdx);}else{readAllOn=false;const b=document.getElementById('readAllBtn');if(b)b.innerText='🔊 Read All';}};
-window.speechSynthesis.speak(u);}
-function toggleReadAll(){if(readAllOn){stopReadAll();return;}readAllOn=true;document.getElementById('readAllBtn').innerText='⏸ Pause';readIdx=0;readPara(0);}
-function stopReadAll(){readAllOn=false;if(window.speechSynthesis)window.speechSynthesis.cancel();const b=document.getElementById('readAllBtn');if(b)b.innerText='🔊 Read All';
-document.querySelectorAll('#lessonParas > div').forEach(d=>d.classList.remove('bg-yellow-100','ring-2','ring-emerald-500'));}
+
+/* AUDIO_MAP: offline-first English TTS (device voices) with natural slow rate.
+   Works inside the app without external browser controls. Online fallback uses same API. */
+const AUDIO_MAP = {
+  lang: 'en-IN',
+  rate: 0.72,
+  pitch: 1.0,
+  volume: 1.0,
+  preferredVoices: ['Google UK English Female','Google US English','Microsoft Zira','Samantha','Karen','Daniel','en-IN','en-GB','en-US']
+};
+
+let preferredVoice = null;
+function loadPreferredVoice(){
+  if(!('speechSynthesis' in window)) return;
+  const voices = speechSynthesis.getVoices();
+  if(!voices || !voices.length) return;
+  for(const name of AUDIO_MAP.preferredVoices){
+    const v = voices.find(x => (x.name && x.name.indexOf(name) !== -1) || (x.lang && x.lang.indexOf(name) !== -1));
+    if(v){ preferredVoice = v; return; }
+  }
+  preferredVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('en')) || voices[0] || null;
+}
+if('speechSynthesis' in window){
+  loadPreferredVoice();
+  speechSynthesis.onvoiceschanged = loadPreferredVoice;
+}
+
+function speakEnglish(text, onEnd){
+  if(!('speechSynthesis' in window)){
+    showToast('Speech not supported on this device', 1600, false);
+    if(onEnd) onEnd();
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = AUDIO_MAP.lang;
+  u.rate = AUDIO_MAP.rate;
+  u.pitch = AUDIO_MAP.pitch;
+  u.volume = AUDIO_MAP.volume;
+  if(preferredVoice) u.voice = preferredVoice;
+  u.onend = function(){ if(onEnd) onEnd(); };
+  u.onerror = function(){ if(onEnd) onEnd(); };
+  window.speechSynthesis.speak(u);
+}
+
+let readAllOn = false, readIdx = 0;
+function renderLessonParas(){
+  const box = document.getElementById('lessonParas');
+  if(!box) return;
+  box.innerHTML = '';
+  lessonParas.forEach((p,i)=>{
+    const div = document.createElement('div');
+    div.className = 'p-3 rounded-xl bg-emerald-50 border-l-4 border-emerald-500 flex gap-2 items-start';
+    div.id = 'para'+i;
+    div.innerHTML = '<p class="flex-1 text-base leading-relaxed overflow-wrap-anywhere" style="overflow-wrap:anywhere;word-break:break-word">'+p+'</p><button class="bg-emerald-600 text-white w-10 h-10 rounded-full flex-shrink-0" onclick="readPara('+i+')">▶</button>';
+    box.appendChild(div);
+  });
+}
+function highlightPara(i){
+  document.querySelectorAll('#lessonParas > div').forEach(d=>d.classList.remove('bg-yellow-100','ring-2','ring-emerald-500'));
+  const el = document.getElementById('para'+i);
+  if(el){ el.classList.add('bg-yellow-100','ring-2','ring-emerald-500'); el.scrollIntoView({behavior:'smooth',block:'center'}); }
+}
+function readPara(i){
+  highlightPara(i);
+  speakEnglish(lessonParas[i], function(){
+    if(readAllOn && i+1 < lessonParas.length){
+      readIdx = i+1;
+      readPara(readIdx);
+    } else {
+      readAllOn = false;
+      const b = document.getElementById('readAllBtn');
+      if(b) b.innerText = '🔊 Read All';
+    }
+  });
+}
+function toggleReadAll(){
+  if(readAllOn){ stopReadAll(); return; }
+  readAllOn = true;
+  document.getElementById('readAllBtn').innerText = '⏸ Pause';
+  readIdx = 0;
+  readPara(0);
+}
+function stopReadAll(){
+  readAllOn = false;
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  const b = document.getElementById('readAllBtn');
+  if(b) b.innerText = '🔊 Read All';
+  document.querySelectorAll('#lessonParas > div').forEach(d=>d.classList.remove('bg-yellow-100','ring-2','ring-emerald-500'));
+}
 
 function initTerm(){mcq('tmQ','tmOpts',[
   {q:'Flat representation of the Earth',a:'Map',o:['Map','Only globe','Only photo','Only chart']},
