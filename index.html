@@ -414,33 +414,86 @@ const lessonParas=[
   "Each map has a title based on its function. Different maps are used to represent different geographical features clearly."
 ];
 
-/* AUDIO_MAP: offline-first English TTS (device voices) with natural slow rate.
-   Works inside the app without external browser controls. Online fallback uses same API. */
+/* ============================================================
+   AUDIO_MAP — Pre-recorded English audio (Google TTS style)
+   - clips[i] = base64 MP3 data-URI for paragraph i (offline)
+   - When a clip exists → plays with HTML <audio> (no browser TTS needed)
+   - When clip is null/missing → automatic fallback to speechSynthesis
+     at slow clear rate (0.85) using best available English voice
+   ============================================================ */
 const AUDIO_MAP = {
   lang: 'en-IN',
-  rate: 0.72,
+  rate: 0.85,
   pitch: 1.0,
   volume: 1.0,
-  preferredVoices: ['Google UK English Female','Google US English','Microsoft Zira','Samantha','Karen','Daniel','en-IN','en-GB','en-US']
+  preferredVoices: [
+    'Google UK English Female','Google US English','Microsoft Zira Desktop',
+    'Microsoft Zira','Samantha','Karen','Daniel','Google UK English Male',
+    'en-IN','en-GB','en-US'
+  ],
+  /* Pre-recorded clips (base64 MP3). null = use speechSynthesis fallback.
+     To embed real Google-TTS MP3 later, replace null with:
+     "data:audio/mpeg;base64,...." for each paragraph. */
+  clips: [null, null, null, null, null, null, null, null, null, null]
 };
 
 let preferredVoice = null;
+let currentAudio = null;
+
 function loadPreferredVoice(){
   if(!('speechSynthesis' in window)) return;
   const voices = speechSynthesis.getVoices();
   if(!voices || !voices.length) return;
   for(const name of AUDIO_MAP.preferredVoices){
-    const v = voices.find(x => (x.name && x.name.indexOf(name) !== -1) || (x.lang && x.lang.indexOf(name) !== -1));
+    const v = voices.find(x =>
+      (x.name && x.name.indexOf(name) !== -1) ||
+      (x.lang && x.lang.toLowerCase().indexOf(name.toLowerCase()) !== -1)
+    );
     if(v){ preferredVoice = v; return; }
   }
   preferredVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('en')) || voices[0] || null;
 }
 if('speechSynthesis' in window){
   loadPreferredVoice();
-  speechSynthesis.onvoiceschanged = loadPreferredVoice;
+  if(typeof speechSynthesis !== 'undefined') speechSynthesis.onvoiceschanged = loadPreferredVoice;
 }
 
-function speakEnglish(text, onEnd){
+function stopAllAudio(){
+  if(currentAudio){
+    try{ currentAudio.pause(); currentAudio.currentTime = 0; }catch(e){}
+    currentAudio = null;
+  }
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+}
+
+/* Primary: play pre-recorded base64 MP3 via <audio>. Fallback: slow speechSynthesis. */
+function playClipOrSpeak(index, text, onEnd){
+  stopAllAudio();
+  const clip = (AUDIO_MAP.clips && AUDIO_MAP.clips[index]) ? AUDIO_MAP.clips[index] : null;
+
+  if(clip && typeof clip === 'string' && clip.length > 50){
+    try{
+      const audio = new Audio(clip);
+      currentAudio = audio;
+      audio.onended = function(){ currentAudio = null; if(onEnd) onEnd(); };
+      audio.onerror = function(){
+        currentAudio = null;
+        speakEnglishFallback(text, onEnd);
+      };
+      const p = audio.play();
+      if(p && typeof p.catch === 'function'){
+        p.catch(function(){ speakEnglishFallback(text, onEnd); });
+      }
+      return;
+    }catch(e){
+      speakEnglishFallback(text, onEnd);
+      return;
+    }
+  }
+  speakEnglishFallback(text, onEnd);
+}
+
+function speakEnglishFallback(text, onEnd){
   if(!('speechSynthesis' in window)){
     showToast('Speech not supported on this device', 1600, false);
     if(onEnd) onEnd();
@@ -459,6 +512,7 @@ function speakEnglish(text, onEnd){
 }
 
 let readAllOn = false, readIdx = 0;
+
 function renderLessonParas(){
   const box = document.getElementById('lessonParas');
   if(!box) return;
@@ -467,18 +521,24 @@ function renderLessonParas(){
     const div = document.createElement('div');
     div.className = 'p-3 rounded-xl bg-emerald-50 border-l-4 border-emerald-500 flex gap-2 items-start';
     div.id = 'para'+i;
-    div.innerHTML = '<p class="flex-1 text-base leading-relaxed overflow-wrap-anywhere" style="overflow-wrap:anywhere;word-break:break-word">'+p+'</p><button class="bg-emerald-600 text-white w-10 h-10 rounded-full flex-shrink-0" onclick="readPara('+i+')">▶</button>';
+    div.innerHTML = '<p class="flex-1 text-base leading-relaxed" style="overflow-wrap:anywhere;word-break:break-word">'+p+'</p><button class="bg-emerald-600 text-white w-10 h-10 rounded-full flex-shrink-0" onclick="readPara('+i+')">▶</button>';
     box.appendChild(div);
   });
 }
+
 function highlightPara(i){
   document.querySelectorAll('#lessonParas > div').forEach(d=>d.classList.remove('bg-yellow-100','ring-2','ring-emerald-500'));
   const el = document.getElementById('para'+i);
-  if(el){ el.classList.add('bg-yellow-100','ring-2','ring-emerald-500'); el.scrollIntoView({behavior:'smooth',block:'center'}); }
+  if(el){
+    el.classList.add('bg-yellow-100','ring-2','ring-emerald-500');
+    el.scrollIntoView({behavior:'smooth',block:'center'});
+  }
 }
+
 function readPara(i){
+  if(i < 0 || i >= lessonParas.length) return;
   highlightPara(i);
-  speakEnglish(lessonParas[i], function(){
+  playClipOrSpeak(i, lessonParas[i], function(){
     if(readAllOn && i+1 < lessonParas.length){
       readIdx = i+1;
       readPara(readIdx);
@@ -489,6 +549,7 @@ function readPara(i){
     }
   });
 }
+
 function toggleReadAll(){
   if(readAllOn){ stopReadAll(); return; }
   readAllOn = true;
@@ -496,9 +557,10 @@ function toggleReadAll(){
   readIdx = 0;
   readPara(0);
 }
+
 function stopReadAll(){
   readAllOn = false;
-  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  stopAllAudio();
   const b = document.getElementById('readAllBtn');
   if(b) b.innerText = '🔊 Read All';
   document.querySelectorAll('#lessonParas > div').forEach(d=>d.classList.remove('bg-yellow-100','ring-2','ring-emerald-500'));
