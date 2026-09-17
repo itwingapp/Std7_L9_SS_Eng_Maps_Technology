@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>Social Science - Class 7 | Maps and Technology to Know the Earth</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+*{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:#ecfdf5;color:#0f172a;overflow-x:hidden;word-wrap:break-word}
+.app-container{max-width:800px;margin:0 auto;min-height:100vh;background:#fff;box-shadow:0 4px 6px -1px rgba(0,0,0,.1);overflow-x:hidden}
+.screen{display:none;padding:16px;animation:fadeIn .3s;overflow-x:hidden;word-break:break-word}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.btn-main{padding:14px 16px;border-radius:12px;font-weight:700;display:flex;align-items:center;gap:12px;width:100%;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.2);text-align:left;font-size:0.95rem;line-height:1.35}
+.btn-main:active{transform:translateY(4px);box-shadow:none}
+.btn-action{background:#059669;color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;box-shadow:0 4px 0 #047857;cursor:pointer;border:none}
+.header{background:#047857;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-radius:14px;margin-bottom:16px;gap:8px}
+.header h1{font-size:1.05rem;font-weight:700;margin:0;flex:1;overflow:hidden;text-overflow:ellipsis}
+.back-btn{background:rgba(255,255,255,.25);border:none;color:#fff;font-size:1.15rem;padding:4px 12px;border-radius:8px;cursor:pointer;flex-shrink:0}
+.category-card{background:#ecfdf5;border:2px solid #a7f3d0;border-radius:16px;padding:14px;margin-bottom:16px}
+.category-title{font-size:1.1rem;font-weight:700;margin-bottom:12px;border-bottom:2px dashed #34d399;padding-bottom:6px}
+.content-card{background:#fff;border:2px solid #6ee7b7;border-radius:12px;padding:14px;margin-bottom:14px;overflow-x:hidden;word-break:break-word}
+.quiz-opt,.match-item{padding:12px;background:#ecfdf5;border:2px solid #6ee7b7;border-radius:8px;cursor:pointer;text-align:center;font-weight:700;font-size:0.92rem}
+.match-item.selected{background:#a7f3d0;border-color:#059669}
+.match-item.matched{background:#bbf7d0;border-color:#16a34a;color:#16a34a}
+.memory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.memory-card{aspect-ratio:1;background:#10b981;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:transparent;cursor:pointer;box-shadow:0 4px 0 #047857;padding:4px;text-align:center;overflow:hidden}
+.memory-card.revealed,.memory-card.matched{background:#fff;color:#1f2937;border:2px solid #10b981;box-shadow:none}
+.memory-card.matched{background:#d1fae5;border-color:#059669}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:12px 24px;border-radius:8px;z-index:1000;display:none;opacity:0;font-weight:700;max-width:90%;text-align:center}
+.toast.show{display:block;opacity:1}
+.race-track{height:40px;background:#d1fae5;border-radius:20px;position:relative;margin:16px 0;border:2px solid #6ee7b7}
+.car{font-size:1.8rem;position:absolute;top:-4px;left:0;transition:left .3s}
+.formula{background:#ecfdf5;border-left:4px solid #059669;padding:10px 12px;border-radius:8px;margin:8px 0;font-weight:600;font-size:0.95rem}
+@media (max-width:640px){
+  .home-grid{grid-template-columns:1fr !important;gap:10px !important}
+  .btn-main{min-height:56px;font-size:1rem;padding:16px}
+  .screen{padding:12px}
+}
+@media print{.no-print{display:none!important}}
+</style>
+</head>
+<body>
+<div class="app-container">
+<div id="homeScreen" class="screen active">
+  <div class="text-center mb-5 pt-2 px-1">
+    <h1 class="text-2xl sm:text-3xl font-extrabold text-emerald-800 mb-1">Social Science — Class 7</h1>
+    <p class="text-emerald-700 font-extrabold text-lg">Unit 9: Maps and Technology to Know the Earth</p>
+    <div class="mt-3 mb-1 inline-block bg-emerald-100 border-2 border-emerald-500 text-emerald-900 font-extrabold px-4 py-2 rounded-xl text-sm shadow">
+      ✨ Prepared by : Smart Vidhya
+    </div>
+  </div>
+
+  <div class="category-card">
+    <h3 class="category-title text-emerald-800">📖 1. Understand the Lesson</h3>
+    <div class="grid home-grid grid-cols-1 gap-3 mb-3">
+      <button class="btn-main bg-teal-600" onclick="showScreen('readLessonScreen')"><span class="text-2xl">🔊</span> Read the Lesson</button>
+    </div>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-emerald-500" onclick="showScreen('learn1')"><span class="text-2xl">🗺️</span> Why Maps?</button>
+      <button class="btn-main bg-green-500" onclick="showScreen('learn2')"><span class="text-2xl">🌍</span> Globe vs Map</button>
+      <button class="btn-main bg-teal-500" onclick="showScreen('learn3')"><span class="text-2xl">📑</span> Types of Maps</button>
+      <button class="btn-main bg-cyan-500" onclick="showScreen('learn4')"><span class="text-2xl">📱</span> Digital Maps</button>
+      <button class="btn-main bg-sky-500" onclick="showScreen('learn5')"><span class="text-2xl">🛰️</span> Technology & GPS</button>
+      <button class="btn-main bg-blue-500" onclick="showScreen('learn6')"><span class="text-2xl">🔑</span> Map Elements</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <h3 class="category-title text-emerald-800">🎯 2. Know the Concepts</h3>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-pink-500" onclick="initTerm();showScreen('tmScreen')"><span class="text-2xl">📚</span> Key Terms</button>
+      <button class="btn-main bg-rose-500" onclick="initDiff();showScreen('dfScreen')"><span class="text-2xl">⚖️</span> Globe or Map?</button>
+      <button class="btn-main bg-red-500" onclick="initTrue();showScreen('trueScreen')"><span class="text-2xl">✅</span> True or False</button>
+      <button class="btn-main bg-orange-500" onclick="initType();showScreen('tpScreen')"><span class="text-2xl">📑</span> Physical / Cultural</button>
+      <button class="btn-main bg-amber-600" onclick="initUse();showScreen('usScreen')"><span class="text-2xl">🧭</span> Map Uses</button>
+      <button class="btn-main bg-yellow-600 text-white" onclick="initTech();showScreen('tcScreen')"><span class="text-2xl">📱</span> Digital Tools</button>
+      <button class="btn-main bg-lime-600" onclick="initSymbol();showScreen('syScreen')"><span class="text-2xl">🔣</span> Symbols</button>
+      <button class="btn-main bg-green-600" onclick="initFeature();showScreen('ftScreen')"><span class="text-2xl">🏞️</span> Features</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <h3 class="category-title text-emerald-800">🧩 3. Explore & Reflect</h3>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-emerald-600" onclick="initClassify();showScreen('clScreen')"><span class="text-2xl">📂</span> Classify Maps</button>
+      <button class="btn-main bg-green-600" onclick="initConnect();showScreen('cnScreen')"><span class="text-2xl">🔗</span> Connect A–B</button>
+      <button class="btn-main bg-teal-600" onclick="initSituation();showScreen('stScreen')"><span class="text-2xl">📍</span> When to Use Map</button>
+      <button class="btn-main bg-cyan-600" onclick="initCompare();showScreen('cpScreen')"><span class="text-2xl">⚖️</span> Compare</button>
+      <button class="btn-main bg-sky-600" onclick="initTrip();showScreen('trScreen')"><span class="text-2xl">🧳</span> Trip Planning</button>
+      <button class="btn-main bg-blue-600" onclick="initPolitical();showScreen('plScreen')"><span class="text-2xl">🏛️</span> Political Map</button>
+      <button class="btn-main bg-indigo-600" onclick="initPhysical();showScreen('phScreen')"><span class="text-2xl">⛰️</span> Physical Map</button>
+      <button class="btn-main bg-violet-600" onclick="initChallenge();showScreen('chScreen')"><span class="text-2xl">💪</span> Challenge</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <h3 class="category-title text-emerald-800">🎮 4. Play & Learn</h3>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-cyan-500" onclick="initMem();showScreen('memScreen')"><span class="text-2xl">🃏</span> Memory Match</button>
+      <button class="btn-main bg-sky-600" onclick="initRace();showScreen('raceScreen')"><span class="text-2xl">🏎️</span> Map Race</button>
+      <button class="btn-main bg-blue-600" onclick="initQuick();showScreen('quickScreen')"><span class="text-2xl">⚡</span> Speed Quiz</button>
+      <button class="btn-main bg-indigo-600" onclick="initLadder();showScreen('ladderScreen')"><span class="text-2xl">📶</span> Ladder</button>
+      <button class="btn-main bg-violet-600" onclick="initTarget();showScreen('targetScreen')"><span class="text-2xl">🎯</span> Target</button>
+      <button class="btn-main bg-purple-600" onclick="initOrder();showScreen('orderScreen')"><span class="text-2xl">📊</span> Order</button>
+      <button class="btn-main bg-fuchsia-600" onclick="initMix();showScreen('mixScreen')"><span class="text-2xl">🎲</span> Mix & Match</button>
+      <button class="btn-main bg-pink-600" onclick="initBuild();showScreen('buildScreen')"><span class="text-2xl">🏗️</span> Build Idea</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <h3 class="category-title text-emerald-800">🌟 5. Do & Apply</h3>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-indigo-500" onclick="showScreen('vocabScreen')"><span class="text-2xl">📇</span> Word Cards</button>
+      <button class="btn-main bg-violet-500" onclick="initPairGame();showScreen('pairScreen')"><span class="text-2xl">🔗</span> Map Pair Game</button>
+      <button class="btn-main bg-purple-500" onclick="initClue();showScreen('clueScreen')"><span class="text-2xl">🕵️</span> Clue Detective</button>
+      <button class="btn-main bg-fuchsia-500" onclick="initSort();showScreen('sortScreen')"><span class="text-2xl">📦</span> Physical or Cultural?</button>
+      <button class="btn-main bg-pink-500" onclick="initFill();showScreen('fillScreen')"><span class="text-2xl">✍️</span> Fill the Blanks</button>
+      
+      <button class="btn-main bg-amber-600" onclick="showScreen('shortAnsScreen')"><span class="text-2xl">✏️</span> Short Answers</button>
+      <button class="btn-main bg-orange-600" onclick="showScreen('writeAnsScreen')"><span class="text-2xl">📝</span> Write Answers</button>
+      <button class="btn-main bg-rose-500" onclick="showScreen('followScreen')"><span class="text-2xl">📌</span> Follow-up Tasks</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <h3 class="category-title text-emerald-800">📝 6. Exam Corner</h3>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-teal-600" onclick="initQuiz();showScreen('quizScreen')"><span class="text-2xl">❓</span> Mega Quiz</button>
+      <button class="btn-main bg-emerald-600" onclick="showScreen('matchScreen')"><span class="text-2xl">🔗</span> Cross Match</button>
+      <button class="btn-main bg-green-600" onclick="showScreen('modelQPScreen')"><span class="text-2xl">📋</span> Model Question Paper</button>
+      <button class="btn-main bg-lime-600" onclick="showScreen('unitTestScreen')"><span class="text-2xl">📄</span> Unit Test</button>
+    </div>
+  </div>
+</div>
+
+<!-- READ -->
+<div id="readLessonScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="stopReadAll();showScreen('homeScreen')">⬅</button><h1>Read the Lesson</h1></div>
+  <div class="content-card text-sm">
+    <div class="text-center mb-4">
+      <button id="readAllBtn" class="btn-action px-6 py-3" onclick="toggleReadAll()">🔊 Read All</button>
+      <button class="btn-action px-4 py-3 ml-2" style="background:#64748b;box-shadow:0 4px 0 #475569" onclick="stopReadAll()">⏹ Stop</button>
+    </div>
+    <div class="text-center mb-3"><span class="inline-block bg-emerald-100 text-emerald-800 font-extrabold px-4 py-2 rounded-full">Maps and Technology to Know the Earth</span></div>
+    <div id="lessonParas" class="space-y-3"></div>
+  </div>
+</div>
+
+<!-- LEARN -->
+<div id="learn1" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Why Maps?</h1></div><div class="content-card text-sm space-y-3"><p>Maps help us locate places, find routes, and understand geographical features.</p><div class="formula">Printed maps → Digital maps on phones & vehicles</div><p>Planning a trip with a map saves time and makes the journey enjoyable.</p></div></div>
+<div id="learn2" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Globe vs Map</h1></div><div class="content-card text-sm space-y-3"><p><b>Globe:</b> Spherical model of Earth; shows true shape; latitudes/longitudes accurate; hard to carry.</p><p><b>Map:</b> Flat representation; easy to carry; may have some distortion; many types for many uses.</p></div></div>
+<div id="learn3" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Types of Maps</h1></div><div class="content-card text-sm space-y-3"><div class="formula">Physical maps — natural features (soil, rivers, climate, vegetation, topography)</div><div class="formula">Cultural maps — man-made features (political divisions, roads, population, economy)</div></div></div>
+<div id="learn4" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Digital Maps</h1></div><div class="content-card text-sm space-y-3"><p>Maps on mobile phones and vehicles. Help find places and routes easily (e.g. Meeshappulimalai trip).</p><p>Updated often; zoom; turn-by-turn navigation.</p></div></div>
+<div id="learn5" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Technology & GPS</h1></div><div class="content-card text-sm space-y-3"><p>Satellites and GPS support digital mapping and location services.</p><p>Technology helps us know the Earth better — from printed maps to satellite images.</p></div></div>
+<div id="learn6" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Map Elements</h1></div><div class="content-card text-sm space-y-3"><p>Title, scale, direction (north arrow), legend/symbols, colours — help read a map correctly.</p><p>Function of a map is related to its content and title.</p></div></div>
+
+<!-- IDENTIFY / KNOW -->
+<div id="tmScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Key Terms</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="tmQ"></p><div class="grid grid-cols-2 gap-3" id="tmOpts"></div></div></div>
+<div id="dfScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Globe or Map?</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="dfQ"></p><div class="grid grid-cols-2 gap-3" id="dfOpts"></div></div></div>
+<div id="trueScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>True or False</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="tfQ"></p><div class="grid grid-cols-2 gap-3"><button class="quiz-opt py-4" onclick="checkTF(true)">True</button><button class="quiz-opt py-4" onclick="checkTF(false)">False</button></div></div></div>
+<div id="tpScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Physical / Cultural</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="tpQ"></p><div class="grid grid-cols-2 gap-3" id="tpOpts"></div></div></div>
+<div id="usScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Map Uses</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="usQ"></p><div class="grid grid-cols-2 gap-3" id="usOpts"></div></div></div>
+<div id="tcScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Digital Tools</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="tcQ"></p><div class="grid grid-cols-2 gap-3" id="tcOpts"></div></div></div>
+<div id="syScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Symbols</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="syQ"></p><div class="grid grid-cols-2 gap-3" id="syOpts"></div></div></div>
+<div id="ftScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Features</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="ftQ"></p><div class="grid grid-cols-2 gap-3" id="ftOpts"></div></div></div>
+
+<!-- EXPLORE -->
+<div id="clScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Classify</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="clQ"></p><div class="grid grid-cols-2 gap-3" id="clOpts"></div></div></div>
+<div id="cnScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Connect</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="cnQ"></p><div class="grid grid-cols-2 gap-3" id="cnOpts"></div></div></div>
+<div id="stScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Situation</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="stQ"></p><div class="grid grid-cols-2 gap-3" id="stOpts"></div></div></div>
+<div id="cpScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Compare</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="cpQ"></p><div class="grid grid-cols-2 gap-3" id="cpOpts"></div></div></div>
+<div id="trScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Trip</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="trQ"></p><div class="grid grid-cols-2 gap-3" id="trOpts"></div></div></div>
+<div id="plScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Political</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="plQ"></p><div class="grid grid-cols-2 gap-3" id="plOpts"></div></div></div>
+<div id="phScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Physical</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="phQ"></p><div class="grid grid-cols-2 gap-3" id="phOpts"></div></div></div>
+<div id="chScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Challenge</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="chQ"></p><div class="grid grid-cols-2 gap-3" id="chOpts"></div></div></div>
+
+<!-- GAMES -->
+<div id="memScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Memory</h1></div><div class="content-card text-center"><p class="font-extrabold mb-3">Term ↔ Meaning</p><div class="memory-grid" id="memoryGrid"></div><div class="flex justify-between mt-4"><p id="memoryMoves" class="font-extrabold text-emerald-700">Moves: 0</p><button class="btn-action" onclick="initMem()">Again</button></div></div></div>
+<div id="raceScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Map Race</h1></div><div class="content-card text-center"><div class="font-extrabold text-emerald-700">Points: <span id="racePts">0</span>/100</div><div class="race-track"><div class="car" id="raceCar">🏎️</div></div><p class="text-xl font-extrabold my-3" id="raceQ"></p><div class="grid grid-cols-2 gap-3" id="raceOpts"></div></div></div>
+<div id="quickScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Speed Quiz</h1></div><div class="content-card text-center"><p class="text-xl font-extrabold my-4" id="qkQ"></p><div class="grid grid-cols-2 gap-3" id="qkOpts"></div><p class="mt-4 font-extrabold text-emerald-700" id="qkScore">Score: 0</p></div></div>
+<div id="ladderScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Ladder</h1></div><div class="content-card text-center"><p class="text-xl font-extrabold my-3" id="ldQ"></p><div class="grid grid-cols-2 gap-3" id="ldOpts"></div><p class="mt-3 font-extrabold" id="ldScore">Level: 1</p></div></div>
+<div id="targetScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Target</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="tgQ"></p><div class="grid grid-cols-2 gap-3" id="tgOpts"></div></div></div>
+<div id="orderScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Order</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="orQ"></p><div class="grid grid-cols-2 gap-3" id="orOpts"></div></div></div>
+<div id="mixScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Mix</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="mxQ"></p><div class="grid grid-cols-1 gap-3" id="mxOpts"></div></div></div>
+<div id="buildScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Build</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="bdQ"></p><div class="grid grid-cols-1 gap-3" id="bdOpts"></div></div></div>
+
+<!-- DO & APPLY -->
+<div id="vocabScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Word Cards</h1></div><div class="content-card text-sm"><p class="text-center font-extrabold mb-3 text-emerald-700">Tap to flip</p><div class="grid grid-cols-2 gap-3" id="vocabGrid"></div></div></div>
+<div id="pairScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Map Pair</h1></div><div class="content-card text-center"><p class="font-extrabold mb-3">Match feature → map type</p><div class="grid grid-cols-2 gap-3" id="pairGrid"></div><p class="mt-3 font-extrabold text-emerald-700" id="pairScore">Matched: 0</p></div></div>
+<div id="clueScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Clue Detective</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4 text-lg" id="clueQ"></p><div class="grid grid-cols-2 gap-3" id="clueOpts"></div></div></div>
+<div id="sortScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Physical or Cultural?</h1></div><div class="content-card text-center"><p class="font-extrabold mb-3">Classify this map</p><p class="text-xl font-extrabold my-4" id="sortQ"></p><div class="grid grid-cols-2 gap-3"><button class="quiz-opt py-4" onclick="checkSort(true)">Physical</button><button class="quiz-opt py-4" onclick="checkSort(false)">Cultural</button></div></div></div>
+<div id="fillScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Fill Blanks</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="fillQ"></p><div class="grid grid-cols-2 gap-3" id="fillOpts"></div></div></div>
+<div id="followScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Follow-up</h1></div><div class="content-card text-sm space-y-3">
+  <div class="p-3 bg-emerald-50 rounded-xl border-2 border-emerald-200"><h3 class="font-extrabold text-emerald-800">1. 🗺️ Map list</h3><p>List situations where you use maps (locate place, route, features…).</p></div>
+  <div class="p-3 bg-teal-50 rounded-xl border-2 border-teal-200"><h3 class="font-extrabold text-teal-800">2. 🌍 Globe vs Map chart</h3><p>Make a chart of differences: shape, latitudes/longitudes, use.</p></div>
+  <div class="p-3 bg-cyan-50 rounded-xl border-2 border-cyan-200"><h3 class="font-extrabold text-cyan-800">3. 📑 Classify maps</h3><p>List physical maps and cultural maps from your textbook / lab.</p></div>
+  <div class="p-3 bg-sky-50 rounded-xl border-2 border-sky-200"><h3 class="font-extrabold text-sky-800">4. 📱 Digital map trial</h3><p>With a teacher/parent, open a digital map and find a place and route.</p></div>
+</div></div>
+
+<!-- EXAM -->
+<div id="quizScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Mega Quiz</h1><div id="quizProgress" class="font-extrabold bg-white text-emerald-800 px-3 py-1 rounded-lg text-sm">1/20</div></div>
+  <div class="content-card min-h-[260px]"><div id="quizQuestionArea"><h3 id="questionText" class="font-extrabold text-lg mb-5"></h3><div id="optionsGrid" class="grid gap-3"></div></div>
+  <div id="quizResultArea" style="display:none" class="text-center py-4"><div class="text-6xl mb-3">🏆</div><h2 class="text-2xl font-extrabold text-emerald-700 mb-3">Completed!</h2><p class="text-xl font-extrabold mb-5">Score: <span id="finalScore" class="text-3xl text-blue-600">0</span>/20</p><button class="btn-action w-full py-3" onclick="initQuiz()">Play Again</button></div></div>
+</div>
+<div id="matchScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Cross Match</h1></div>
+  <div class="content-card"><p class="text-center font-extrabold mb-4">Match pairs</p>
+    <div class="grid grid-cols-2 gap-3">
+      <div class="flex flex-col gap-2" id="match-left">
+        <div class="match-item" data-id="a" onclick="selM('left',this)">Physical map</div>
+        <div class="match-item" data-id="b" onclick="selM('left',this)">Cultural map</div>
+        <div class="match-item" data-id="c" onclick="selM('left',this)">Globe</div>
+        <div class="match-item" data-id="d" onclick="selM('left',this)">Political map</div>
+        <div class="match-item" data-id="e" onclick="selM('left',this)">Digital map</div>
+      </div>
+      <div class="flex flex-col gap-2" id="match-right">
+        <div class="match-item" data-id="c" onclick="selM('right',this)">Spherical model of Earth</div>
+        <div class="match-item" data-id="a" onclick="selM('right',this)">Natural features</div>
+        <div class="match-item" data-id="e" onclick="selM('right',this)">On phone / vehicle</div>
+        <div class="match-item" data-id="b" onclick="selM('right',this)">Man-made features</div>
+        <div class="match-item" data-id="d" onclick="selM('right',this)">States / districts</div>
+      </div>
+    </div>
+    <button class="btn-action w-full mt-5" onclick="resetM()">Reset</button>
+  </div>
+</div>
+<div id="modelQPScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Model Paper</h1></div>
+  <div class="content-card text-sm">
+    <div class="text-center mb-4 border-b-2 pb-2"><h2 class="text-xl font-extrabold text-emerald-800">Model Question Paper</h2><p class="font-extrabold text-gray-500">Class 7 | SS | Unit 9: Maps and Technology</p><p class="text-xs">Prepared by : Smart Vidhya</p></div>
+    <p class="font-extrabold text-emerald-700">I. Choose (8×1=8)</p>
+    <p>1. Flat representation of Earth (a) Map (b) Only globe (c) Only photo</p>
+    <p>2. Natural features map (a) Physical (b) Only political (c) Only economic</p>
+    <p>3. States and districts map (a) Political (b) Soil only (c) Climate only</p>
+    <p>4. Spherical model (a) Globe (b) Only flat map (c) Only chart</p>
+    <p>5. Maps on phones (a) Digital maps (b) Only paper (c) Only globe</p>
+    <p>6. Soil distribution shown on (a) Soil map (b) Only political (c) Only population</p>
+    <p>7. Roads and railways on (a) Cultural / transportation map (b) Only climate (c) Only soil</p>
+    <p>8. GPS helps (a) Location & navigation (b) Only cooking (c) Only printing</p>
+    <p class="font-extrabold text-emerald-700 mt-2">II. True/False (4)</p>
+    <p>9. Globe shows true shape of Earth. ( ) 10. Political map is a physical map. ( )</p>
+    <p>11. Digital maps help find routes. ( ) 12. Maps have no title. ( )</p>
+    <p class="font-extrabold text-emerald-700 mt-2">III. Fill (4)</p>
+    <p>13. _____ maps show natural features. 14. _____ maps show man-made features.</p>
+    <p>15. Spherical model of Earth is _____. 16. Maps on mobiles are _____ maps.</p>
+    <p class="font-extrabold text-emerald-700 mt-2">IV. Short (3×2=6)</p>
+    <p>17. Two differences between globe and map.</p>
+    <p>18. Two uses of maps.</p>
+    <p>19. Example of physical map and cultural map.</p>
+    <p class="font-extrabold text-emerald-700 mt-2">V. Long (2×4=8)</p>
+    <p>20. Explain physical and cultural maps with examples.</p>
+    <p>21. How do digital maps and technology help us know the Earth and plan travel?</p>
+    <button class="btn-action w-full mt-4" onclick="document.getElementById('modelAnswers').classList.toggle('hidden')">Answers</button>
+    <div id="modelAnswers" class="hidden mt-3 p-3 bg-green-50 rounded-xl border-2 border-green-200 text-sm">I: 1a 2a 3a 4a 5a 6a 7a 8a<br>II: 9T 10F 11T 12F<br>III: 13 Physical 14 Cultural 15 Globe 16 Digital</div>
+  </div>
+</div>
+<div id="unitTestScreen" class="screen">
+  <div class="header no-print"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Unit Test</h1></div>
+  <div class="flex gap-3 mb-4 no-print px-2">
+    <button class="flex-1 bg-blue-100 text-blue-700 py-3 rounded-xl font-extrabold border border-blue-300" onclick="window.print()">🖨️ Print</button>
+    <button class="flex-1 bg-red-100 text-red-700 py-3 rounded-xl font-extrabold border border-red-300" onclick="downloadPDF()">⬇️ PDF</button>
+  </div>
+  <div class="content-card text-sm mx-1" id="printableQP" style="padding:20px">
+    <div class="text-center mb-4 border-b-2 border-black pb-2">
+      <h2 class="text-xl font-extrabold">Unit Assessment</h2>
+      <h3 class="font-extrabold">Social Science — Class 7 | Unit 9: Maps and Technology to Know the Earth</h3>
+      <p>60 minutes | 40 marks</p>
+      <p class="text-xs">Prepared by : Smart Vidhya</p>
+    </div>
+    <p class="font-extrabold">Part A (15)</p>
+    <p><b>1.</b> Choose (5×1=5) a) Map is (i) flat representation (ii) only sphere (iii) only photo</p>
+    <p>b) Physical map shows (i) natural features (ii) only states (iii) only roads</p>
+    <p>c) Globe (i) spherical model (ii) only flat (iii) only chart</p>
+    <p>d) Digital maps (i) on phones/vehicles (ii) only paper (iii) only books</p>
+    <p>e) Political map (i) cultural (ii) only climate (iii) only soil</p>
+    <p><b>2.</b> True/False (5) a) Globe shows true shape. ( ) b) Soil map is physical. ( )</p>
+    <p>c) Population map is physical. ( ) d) Maps help find routes. ( ) e) Title is not needed on maps. ( )</p>
+    <p><b>3.</b> Fill (5) a) _____ = natural features maps. b) _____ = man-made features maps.</p>
+    <p>c) Earth model sphere = _____. d) Phone maps = _____ maps. e) GPS helps _____.</p>
+    <p class="font-extrabold mt-2">Part B (12)</p>
+    <p><b>4.</b> Classify: soil, political, climate, population, river, transportation. (4)</p>
+    <p><b>5.</b> Two differences globe vs map. Two map uses. (4)</p>
+    <p><b>6.</b> What does a political map of Kerala show? What does a soil map show? (4)</p>
+    <p class="font-extrabold mt-2">Part C (13)</p>
+    <p><b>7.</b> Explain physical and cultural maps with examples. (4)</p>
+    <p><b>8.</b> How digital maps and technology help travel and knowing the Earth. (5)</p>
+    <p><b>9.</b> Why different maps for different features? Give examples. (4)</p>
+  </div>
+</div>
+
+<div id="shortAnsScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Short Answers</h1></div>
+  <div class="content-card text-sm">
+    <p class="text-center font-extrabold text-blue-700 mb-3">Write short answers (2–3 sentences). Then check the hint.</p>
+    <div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">1. Write any two uses of maps.</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa0" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah0','saFb0')">Show hint</button>
+      <p id="sah0" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Locate a place; find route; understand geographical features...</p>
+      <p id="saFb0" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">2. What is a globe?</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa1" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah1','saFb1')">Show hint</button>
+      <p id="sah1" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Spherical model of the Earth...</p>
+      <p id="saFb1" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">3. What are physical maps? Give one example.</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa2" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah2','saFb2')">Show hint</button>
+      <p id="sah2" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Maps showing natural features; e.g. soil map, climate map, river map...</p>
+      <p id="saFb2" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">4. What are cultural maps? Give one example.</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa3" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah3','saFb3')">Show hint</button>
+      <p id="sah3" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Maps showing man-made features; e.g. political map, population map...</p>
+      <p id="saFb3" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">5. Write one difference between a globe and a map.</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa4" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah4','saFb4')">Show hint</button>
+      <p id="sah4" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Globe is spherical / true shape; map is flat / easier to carry...</p>
+      <p id="saFb4" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">6. What does a political map show?</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa5" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah5','saFb5')">Show hint</button>
+      <p id="sah5" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Countries, states, districts and other political divisions...</p>
+      <p id="saFb5" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">7. What is a digital map?</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa6" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah6','saFb6')">Show hint</button>
+      <p id="sah6" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Map on mobile phone or vehicle used for navigation...</p>
+      <p id="saFb6" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">8. Why do we use different maps for different features?</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa7" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah7','saFb7')">Show hint</button>
+      <p id="sah7" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Each map focuses on specific content so features are clear...</p>
+      <p id="saFb7" class="text-sm font-extrabold mt-1"></p>
+    </div>
+    <button class="btn-action w-full mt-2" onclick="checkAllShort(8)">Check all filled</button>
+  </div>
+</div>
+<div id="writeAnsScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Write Answers</h1></div>
+  <div class="content-card text-sm">
+    <p class="text-center font-extrabold text-amber-800 mb-3">Write detailed answers. Use the points for self-check.</p>
+    <div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">1. Explain the differences between a globe and a map based on shape, latitudes/longitudes and use.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa0" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah0','waFb0')">Show points</button>
+      <p id="wah0" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Shape: sphere vs flat; lat-long accuracy; ease of carrying and types.</p>
+      <p id="waFb0" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">2. Describe physical maps and cultural maps with suitable examples.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa1" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah1','waFb1')">Show points</button>
+      <p id="wah1" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Physical = natural (soil, rivers, climate); Cultural = man-made (political, roads).</p>
+      <p id="waFb1" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">3. How do digital maps and technology help us in day-to-day life and travel?</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa2" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah2','waFb2')">Show points</button>
+      <p id="wah2" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Find place and route; save time; GPS and satellites; updated maps.</p>
+      <p id="waFb2" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">4. Classify the following as physical or cultural: soil map, political map, climate map, population map, river map, transportation map. Explain why.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa3" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah3','waFb3')">Show points</button>
+      <p id="wah3" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Physical: soil, climate, river; Cultural: political, population, transportation.</p>
+      <p id="waFb3" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">5. Explain the function of a political map and a soil map with examples.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa4" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah4','waFb4')">Show points</button>
+      <p id="wah4" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Political → districts of Kerala; Soil → types of soil in a region.</p>
+      <p id="waFb4" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">6. Write a short note on the importance of maps in knowing the Earth.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa5" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah5','waFb5')">Show points</button>
+      <p id="wah5" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Source of information; locate, route, features; printed to digital.</p>
+      <p id="waFb5" class="text-sm font-extrabold mt-1"></p>
+    </div>
+    <button class="btn-action w-full mt-2" onclick="checkAllWrite(6)">Check all filled</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+</div>
+<script>
+function showScreen(id){if(typeof stopReadAll==='function'&&id!=='readLessonScreen')try{stopReadAll();}catch(e){}
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});
+if(id==='readLessonScreen')renderLessonParas();if(id==='vocabScreen')showVocab();}
+function showToast(m,d=2000,ok=true){const t=document.getElementById('toast');t.innerText=m;t.style.background=ok?'#10b981':'#ef4444';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),d);}
+function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
+function mcq(qEl,oEl,bank,next){const it=bank[Math.floor(Math.random()*bank.length)];document.getElementById(qEl).innerHTML=it.q;const box=document.getElementById(oEl);box.innerHTML='';shuffle(it.o).forEach(o=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerHTML=o;b.onclick=()=>{if(o===it.a){showToast('Correct!');setTimeout(next,700);}else showToast('Try again',1400,false);};box.appendChild(b);});}
+
+const lessonParas=[
+  "Dad, our trip to Meeshappulimalai yesterday was interesting. We could reach there easily using the digital map on our mobile phone.",
+  "Maps are a great source of information. In day-to-day life we use different maps for different purposes — from printed maps to digital maps.",
+  "When we plan a trip, fixing places and route in advance using a map can save time and make the journey more enjoyable.",
+  "Maps are used to locate a place, to find the route to a destination, and to understand geographical features.",
+  "A globe is a spherical model of the Earth. A map is a flat representation. They differ in shape, how latitudes and longitudes appear, and ease of use.",
+  "Physical maps depict natural features such as topography, soil, rivers, climate and vegetation.",
+  "Cultural maps depict man-made or cultural features such as political divisions, roads, railways, ports and population distribution.",
+  "A political map of Kerala shows districts. A soil map shows types of soil in a region. The function of a map is related to its content.",
+  "Digital maps on phones and vehicles help us navigate. Technology and satellites support modern mapping and GPS.",
+  "Each map has a title based on its function. Different maps are used to represent different geographical features clearly."
+];
+let readAllOn=false,readIdx=0;
+function renderLessonParas(){const box=document.getElementById('lessonParas');if(!box)return;box.innerHTML='';
+lessonParas.forEach((p,i)=>{const div=document.createElement('div');div.className='p-3 rounded-xl bg-emerald-50 border-l-4 border-emerald-500 flex gap-2 items-start';div.id='para'+i;
+div.innerHTML='<p class="flex-1 text-base leading-relaxed">'+p+'</p><button class="bg-emerald-600 text-white w-10 h-10 rounded-full flex-shrink-0" onclick="readPara('+i+')">▶</button>';box.appendChild(div);});}
+function highlightPara(i){document.querySelectorAll('#lessonParas > div').forEach(d=>d.classList.remove('bg-yellow-100','ring-2','ring-emerald-500'));
+const el=document.getElementById('para'+i);if(el){el.classList.add('bg-yellow-100','ring-2','ring-emerald-500');el.scrollIntoView({behavior:'smooth',block:'center'});}}
+function readPara(i){if(!('speechSynthesis' in window)){showToast('Speech not supported',1500,false);return;}
+window.speechSynthesis.cancel();highlightPara(i);const u=new SpeechSynthesisUtterance(lessonParas[i]);u.lang='en-IN';u.rate=0.9;
+u.onend=()=>{if(readAllOn&&i+1<lessonParas.length){readIdx=i+1;readPara(readIdx);}else{readAllOn=false;const b=document.getElementById('readAllBtn');if(b)b.innerText='🔊 Read All';}};
+window.speechSynthesis.speak(u);}
+function toggleReadAll(){if(readAllOn){stopReadAll();return;}readAllOn=true;document.getElementById('readAllBtn').innerText='⏸ Pause';readIdx=0;readPara(0);}
+function stopReadAll(){readAllOn=false;if(window.speechSynthesis)window.speechSynthesis.cancel();const b=document.getElementById('readAllBtn');if(b)b.innerText='🔊 Read All';
+document.querySelectorAll('#lessonParas > div').forEach(d=>d.classList.remove('bg-yellow-100','ring-2','ring-emerald-500'));}
+
+function initTerm(){mcq('tmQ','tmOpts',[
+  {q:'Flat representation of the Earth',a:'Map',o:['Map','Only globe','Only photo','Only chart']},
+  {q:'Spherical model of the Earth',a:'Globe',o:['Globe','Only flat map','Only atlas page','Only poster']},
+  {q:'Maps showing natural features',a:'Physical maps',o:['Physical maps','Only political','Only population','Only economic']},
+  {q:'Maps showing man-made features',a:'Cultural maps',o:['Cultural maps','Only climate','Only soil','Only river']},
+  {q:'Maps on phones and vehicles',a:'Digital maps',o:['Digital maps','Only paper maps','Only globes','Only sketches']}
+],initTerm);}
+function initDiff(){mcq('dfQ','dfOpts',[
+  {q:'Shows true spherical shape',a:'Globe',o:['Globe','Flat map only','Only chart','Only photo']},
+  {q:'Easy to carry and fold',a:'Map',o:['Map','Globe only','Only satellite','Only rock']},
+  {q:'May have some distortion of shape',a:'Map',o:['Map','Globe (true shape)','Only 3D model','Only globe always']},
+  {q:'Latitudes and longitudes more true on',a:'Globe',o:['Globe','Only distorted map','Only blank paper','Only photo']}
+],initDiff);}
+let tfOk=true;
+function initTrue(){const items=[
+  {q:'A globe is a spherical model of the Earth',t:true},
+  {q:'Political map is a type of physical map',t:false},
+  {q:'Digital maps help find routes',t:true},
+  {q:'Soil map shows natural features',t:true},
+  {q:'Maps never have a title',t:false},
+  {q:'Cultural maps show roads and districts',t:true},
+  {q:'Globe is always easier to carry than a map',t:false},
+  {q:'Physical maps can show climate and vegetation',t:true},
+  {q:'GPS is unrelated to maps',t:false},
+  {q:'Function of a map relates to its content',t:true}
+];const it=items[Math.floor(Math.random()*items.length)];tfOk=it.t;document.getElementById('tfQ').innerHTML=it.q;}
+function checkTF(ans){if(ans===tfOk){showToast('Correct!');setTimeout(initTrue,800);}else showToast('Not correct',1400,false);}
+function initType(){mcq('tpQ','tpOpts',[
+  {q:'Soil map is',a:'Physical',o:['Physical','Cultural','Neither','Only political']},
+  {q:'Political map is',a:'Cultural',o:['Cultural','Physical','Only climate','Only soil']},
+  {q:'Climate map is',a:'Physical',o:['Physical','Cultural','Only population','Only roads']},
+  {q:'Population map is',a:'Cultural',o:['Cultural','Physical','Only river','Only soil']},
+  {q:'Transportation map is',a:'Cultural',o:['Cultural','Physical','Only climate','Only vegetation']}
+],initType);}
+function initUse(){mcq('usQ','usOpts',[
+  {q:'To locate a place we use',a:'Map / digital map',o:['Map / digital map','Only a blank paper','Only a ruler','Only a pen']},
+  {q:'To find a scientific route',a:'Map',o:['Map','Only guess','Only memory always','Only no tool']},
+  {q:'To understand geographical features',a:'Map / globe',o:['Map / globe','Only a story book','Only a song','Only a game']},
+  {q:'Planning a trip in advance with map',a:'Saves time / easier journey',o:['Saves time / easier journey','Always wastes time','No help','Only confuses']}
+],initUse);}
+function initTech(){mcq('tcQ','tcOpts',[
+  {q:'Maps on mobile phones are',a:'Digital maps',o:['Digital maps','Only paper','Only carved stone','Only cloth']},
+  {q:'GPS helps in',a:'Location and navigation',o:['Location and navigation','Only cooking','Only printing books','Only painting']},
+  {q:'Satellites support',a:'Modern mapping / GPS',o:['Modern mapping / GPS','Only old paper maps','Only no maps','Only stories']},
+  {q:'Digital maps advantage',a:'Updated, zoom, navigation',o:['Updated, zoom, navigation','Never update','Cannot zoom','No directions']}
+],initTech);}
+function initSymbol(){mcq('syQ','syOpts',[
+  {q:'Legend on a map shows',a:'Meaning of symbols',o:['Meaning of symbols','Only the author name','Only page number','Only date']},
+  {q:'North arrow shows',a:'Direction',o:['Direction','Only scale','Only title','Only colour']},
+  {q:'Scale on a map helps',a:'Measure distance',o:['Measure distance','Only choose colour','Only read title','Only fold map']},
+  {q:'Title of a map is based on',a:'Its function / content',o:['Its function / content','Random words','Only date','Only printer']}
+],initSymbol);}
+function initFeature(){mcq('ftQ','ftOpts',[
+  {q:'Rivers and mountains are',a:'Natural features',o:['Natural features','Only man-made','Only political','Only population']},
+  {q:'Roads and districts are',a:'Man-made / cultural features',o:['Man-made / cultural features','Only natural','Only climate','Only soil']},
+  {q:'Vegetation is shown on',a:'Physical / vegetation map',o:['Physical / vegetation map','Only political','Only population','Only economic']},
+  {q:'Ports and railways on',a:'Cultural / transportation map',o:['Cultural / transportation map','Only soil map','Only climate map','Only river map']}
+],initFeature);}
+
+function initClassify(){mcq('clQ','clOpts',[
+  {q:'Physiographic map',a:'Physical',o:['Physical','Cultural','Neither','Only digital']},
+  {q:'Economic map',a:'Cultural',o:['Cultural','Physical','Only soil','Only climate']},
+  {q:'River map',a:'Physical',o:['Physical','Cultural','Only political','Only population']},
+  {q:'Political map of a continent',a:'Cultural',o:['Cultural','Physical','Only climate','Only vegetation']}
+],initClassify);}
+function initConnect(){mcq('cnQ','cnOpts',[
+  {q:'Distribution of rain →',a:'Climate map',o:['Climate map','Transportation map','Political map','Population map']},
+  {q:'Forest area →',a:'Vegetation map',o:['Vegetation map','Political map','Economic map','Population map']},
+  {q:'Paddy fields →',a:'Agricultural map',o:['Agricultural map','Climate map only','Only political','Only soil always']},
+  {q:'Road network →',a:'Transportation map',o:['Transportation map','Climate map','Soil map','River map']}
+],initConnect);}
+function initSituation(){mcq('stQ','stOpts',[
+  {q:'Find route to a tourist place',a:'Use digital / road map',o:['Use digital / road map','Only a story','Only a song','Only no map']},
+  {q:'Know soil types of a region',a:'Soil map',o:['Soil map','Only political map','Only population map','Only atlas cover']},
+  {q:'See districts of Kerala',a:'Political map of Kerala',o:['Political map of Kerala','Only climate map','Only soil map','Only world population']},
+  {q:'Compare globe and map in lab',a:'Shape, lat-long, use',o:['Shape, lat-long, use','Only colour','Only size of book','Only paper type']}
+],initSituation);}
+function initCompare(){mcq('cpQ','cpOpts',[
+  {q:'Globe vs map — shape',a:'Globe spherical; map flat',o:['Globe spherical; map flat','Both always flat','Both always sphere','No difference']},
+  {q:'Which is easier to carry?',a:'Map',o:['Map','Globe always','Only satellite','Only rock model']},
+  {q:'True shape of Earth better on',a:'Globe',o:['Globe','Flat map only','Only sketch','Only photo']}
+],initCompare);}
+function initTrip(){mcq('trQ','trOpts',[
+  {q:'Planning trip with map helps',a:'Save time, enjoyable journey',o:['Save time, enjoyable journey','Always get lost','No benefit','Only confuse']},
+  {q:'Digital map on phone for trip',a:'Find place and route easily',o:['Find place and route easily','Only play games','Only call','Only camera']},
+  {q:'Meeshappulimalai trip used',a:'Digital map',o:['Digital map','Only memory','Only no tool','Only paper plane']}
+],initTrip);}
+function initPolitical(){mcq('plQ','plOpts',[
+  {q:'Political map of Kerala shows',a:'Districts / political divisions',o:['Districts / political divisions','Only soil types','Only rainfall','Only forests']},
+  {q:'Political map is a',a:'Cultural map',o:['Cultural map','Physical map','Only climate','Only river']},
+  {q:'Countries and states on',a:'Political map',o:['Political map','Soil map','Climate map','Vegetation map']}
+],initPolitical);}
+function initPhysical(){mcq('phQ','phOpts',[
+  {q:'Topography and rivers on',a:'Physical / physiographic map',o:['Physical / physiographic map','Political map','Population map','Economic map']},
+  {q:'Climate map is',a:'Physical',o:['Physical','Cultural','Only political','Only transport']},
+  {q:'Vegetation map is',a:'Physical',o:['Physical','Cultural','Only population','Only roads']}
+],initPhysical);}
+function initChallenge(){mcq('chQ','chOpts',[
+  {q:'Why different maps for different features?',a:'Each map focuses on specific content clearly',o:['Each map focuses on specific content clearly','One map always enough','Maps have no purpose','Only for decoration']},
+  {q:'Function of map related to',a:'Its content / title',o:['Its content / title','Only the paper size','Only the colour ink','Only the date printed']},
+  {q:'Technology helps us know Earth by',a:'Digital maps, GPS, satellites',o:['Digital maps, GPS, satellites','Only ignoring maps','Only old stories','Only no tools']}
+],initChallenge);}
+
+const pairs=[{id:1,val:'Physical'},{id:1,val:'Natural features'},{id:2,val:'Cultural'},{id:2,val:'Man-made'},{id:3,val:'Globe'},{id:3,val:'Sphere'},{id:4,val:'Digital map'},{id:4,val:'Phone map'},{id:5,val:'Political'},{id:5,val:'Districts'},{id:6,val:'Soil map'},{id:6,val:'Soil types'}];
+let flipped=[],matched=0,moves=0;
+function initMem(){const g=document.getElementById('memoryGrid');g.innerHTML='';flipped=[];matched=0;moves=0;document.getElementById('memoryMoves').innerText='Moves: 0';
+shuffle(pairs).forEach(it=>{const c=document.createElement('div');c.className='memory-card font-extrabold';c.dataset.id=it.id;c.innerHTML='<div>'+it.val+'</div>';c.onclick=()=>flip(c);g.appendChild(c);});}
+function flip(card){if(flipped.length<2&&!card.classList.contains('revealed')&&!card.classList.contains('matched')){card.classList.add('revealed');flipped.push(card);
+if(flipped.length===2){moves++;document.getElementById('memoryMoves').innerText='Moves: '+moves;setTimeout(()=>{const[a,b]=flipped;if(a.dataset.id===b.dataset.id){a.classList.replace('revealed','matched');b.classList.replace('revealed','matched');matched+=2;if(matched===pairs.length)showToast('Great! 🏆');}else{a.classList.remove('revealed');b.classList.remove('revealed');}flipped=[];},550);}}}
+let racePts=0;
+function initRace(){racePts=0;document.getElementById('racePts').innerText=0;document.getElementById('raceCar').style.left='0%';nextRace();}
+function nextRace(){const bank=[
+  {q:'Physical maps show?',a:'Natural features',o:['Natural features','Only roads','Only states']},
+  {q:'Globe is?',a:'Spherical model',o:['Spherical model','Only flat','Only chart']},
+  {q:'Political map is?',a:'Cultural',o:['Cultural','Physical','Only climate']},
+  {q:'Phone maps are?',a:'Digital maps',o:['Digital maps','Only paper','Only stone']},
+  {q:'Soil map is?',a:'Physical',o:['Physical','Cultural','Only political']},
+  {q:'Find route with?',a:'Map',o:['Map','Only song','Only guess']}
+];const it=bank[Math.floor(Math.random()*bank.length)];document.getElementById('raceQ').innerHTML=it.q;const box=document.getElementById('raceOpts');box.innerHTML='';
+shuffle(it.o).forEach(o=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerHTML=o;b.onclick=()=>{if(o===it.a){racePts=Math.min(100,racePts+20);showToast('+20');}else showToast('Wrong',1000,false);
+document.getElementById('racePts').innerText=racePts;document.getElementById('raceCar').style.left=racePts+'%';if(racePts>=100)showToast('Finish! 🏁');else nextRace();};box.appendChild(b);});}
+let qk=0;
+function initQuick(){const bank=[
+  {q:'Cultural maps show?',a:'Man-made features',o:['Man-made features','Only rivers','Only soil']},
+  {q:'True shape on?',a:'Globe',o:['Globe','Flat map','Only sketch']},
+  {q:'Districts on?',a:'Political map',o:['Political map','Soil map','Climate map']},
+  {q:'GPS helps?',a:'Navigation',o:['Navigation','Only cooking','Only painting']},
+  {q:'Climate map is?',a:'Physical',o:['Physical','Cultural','Only political']},
+  {q:'Easy to carry?',a:'Map',o:['Map','Globe','Only rock']}
+];const it=bank[Math.floor(Math.random()*bank.length)];document.getElementById('qkQ').innerHTML=it.q;const box=document.getElementById('qkOpts');box.innerHTML='';
+shuffle(it.o).forEach(o=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerHTML=o;b.onclick=()=>{if(o===it.a){qk++;showToast('Yes!');}else showToast('No',900,false);document.getElementById('qkScore').innerText='Score: '+qk;initQuick();};box.appendChild(b);});}
+let ldLevel=1;
+const ladderItems=[{q:'Natural features map',a:'Physical'},{q:'Man-made features map',a:'Cultural'},{q:'Spherical Earth model',a:'Globe'},{q:'Flat representation',a:'Map'},{q:'Phone navigation map',a:'Digital map'},{q:'States and districts',a:'Political map'}];
+function initLadder(){ldLevel=1;nextLadder();}
+function nextLadder(){if(ldLevel>ladderItems.length){showToast('Ladder done! 🏆');ldLevel=1;}
+const it=ladderItems[ldLevel-1];document.getElementById('ldQ').innerHTML=it.q+' = ?';document.getElementById('ldScore').innerText='Level: '+ldLevel;
+const wrong=['Climate only','Population only','Soil only'].filter(w=>w!==it.a);const opts=shuffle([it.a,...wrong.slice(0,2)]);
+const box=document.getElementById('ldOpts');box.innerHTML='';opts.forEach(o=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerText=o;b.onclick=()=>{if(o===it.a){showToast('Up!');ldLevel++;setTimeout(nextLadder,600);}else showToast('Again',1000,false);};box.appendChild(b);});}
+function initTarget(){mcq('tgQ','tgOpts',[
+  {q:'Which is physical?',a:'Soil map',o:['Soil map','Political map','Population map','Road map']},
+  {q:'Which is cultural?',a:'Political map',o:['Political map','Climate map','River map','Vegetation map']},
+  {q:'Which is globe?',a:'Spherical model',o:['Spherical model','Flat paper only','Only chart','Only photo']},
+  {q:'Which helps navigation on phone?',a:'Digital map',o:['Digital map','Only paper atlas','Only blank page','Only sketch']}
+],initTarget);}
+function initOrder(){mcq('orQ','orOpts',[
+  {q:'Best for true Earth shape',a:'Globe',o:['Globe','Flat wall map','Only list','Only table']},
+  {q:'Best to carry on trip',a:'Map / digital map',o:['Map / digital map','Large globe','Heavy model','Stone tablet']},
+  {q:'Best for districts of a state',a:'Political map',o:['Political map','Soil map','Climate map','Vegetation map']}
+],initOrder);}
+function initMix(){mcq('mxQ','mxOpts',[
+  {q:'Physical maps',a:'Natural features',o:['Natural features','Only roads','Only states','Only population']},
+  {q:'Cultural maps',a:'Man-made features',o:['Man-made features','Only climate','Only soil','Only rivers']},
+  {q:'Globe',a:'Spherical model of Earth',o:['Spherical model of Earth','Only flat map','Only chart','Only photo']},
+  {q:'Digital maps',a:'On phones and vehicles',o:['On phones and vehicles','Only paper','Only carved','Only cloth']},
+  {q:'Political map',a:'Shows districts / states',o:['Shows districts / states','Only rainfall','Only forests','Only soil']},
+  {q:'Map title based on',a:'Function / content',o:['Function / content','Random words','Only date','Only size']}
+],initMix);}
+function initBuild(){mcq('bdQ','bdOpts',[
+  {q:'Locate place + find route + features',a:'Uses of maps',o:['Uses of maps','Only decoration','Only folding paper','Only colouring']},
+  {q:'Natural vs man-made features',a:'Physical vs Cultural maps',o:['Physical vs Cultural maps','Same always','Only one type','No maps needed']},
+  {q:'Sphere vs flat',a:'Globe vs Map',o:['Globe vs Map','Same object','Only digital','Only paper']},
+  {q:'Plan trip with map',a:'Saves time, better journey',o:['Saves time, better journey','Always lost','No help','Only harder']}
+],initBuild);}
+
+const vocabData=[
+  {w:'Map',m:'Flat representation of the Earth or a part of it'},
+  {w:'Globe',m:'Spherical model of the Earth'},
+  {w:'Physical map',m:'Shows natural features — soil, rivers, climate, vegetation'},
+  {w:'Cultural map',m:'Shows man-made features — political divisions, roads, population'},
+  {w:'Digital map',m:'Map on mobile phone or vehicle navigation system'},
+  {w:'Political map',m:'Shows countries, states, districts'},
+  {w:'Soil map',m:'Shows distribution of different types of soil'},
+  {w:'GPS',m:'System that helps find location and navigate'},
+  {w:'Legend',m:'Explains symbols used on a map'},
+  {w:'Scale',m:'Helps measure real distance on a map'}
+];
+function showVocab(){const g=document.getElementById('vocabGrid');g.innerHTML='';
+vocabData.forEach(v=>{const d=document.createElement('div');d.className='quiz-opt py-4 cursor-pointer';d.innerHTML='<b>'+v.w+'</b>';let flipped=false;
+d.onclick=()=>{flipped=!flipped;d.innerHTML=flipped?'<span class="text-sm">'+v.m+'</span>':'<b>'+v.w+'</b>';};g.appendChild(d);});}
+
+const pairItems=[{id:1,a:'Rain distribution',b:'Climate map'},{id:2,a:'Forest area',b:'Vegetation map'},{id:3,a:'Paddy fields',b:'Agricultural map'},{id:4,a:'Road network',b:'Transportation map'},{id:5,a:'Districts',b:'Political map'},{id:6,a:'Soil types',b:'Soil map'}];
+let pairMatched=0,pairSel=null;
+function initPairGame(){pairMatched=0;pairSel=null;document.getElementById('pairScore').innerText='Matched: 0';const g=document.getElementById('pairGrid');g.innerHTML='';
+const left=shuffle(pairItems.map(p=>({id:p.id,t:p.a})));const right=shuffle(pairItems.map(p=>({id:p.id,t:p.b})));
+left.forEach(it=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerText=it.t;b.dataset.id=it.id;b.dataset.side='L';b.onclick=()=>pairClick(b);g.appendChild(b);});
+right.forEach(it=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerText=it.t;b.dataset.id=it.id;b.dataset.side='R';b.onclick=()=>pairClick(b);g.appendChild(b);});}
+function pairClick(btn){if(btn.classList.contains('matched'))return;if(!pairSel){pairSel=btn;btn.classList.add('bg-emerald-100');return;}
+if(pairSel===btn){pairSel.classList.remove('bg-emerald-100');pairSel=null;return;}
+if(pairSel.dataset.side===btn.dataset.side){pairSel.classList.remove('bg-emerald-100');pairSel=btn;btn.classList.add('bg-emerald-100');return;}
+if(pairSel.dataset.id===btn.dataset.id){pairSel.className=btn.className='quiz-opt py-3 matched bg-green-100 border-green-500';pairMatched++;document.getElementById('pairScore').innerText='Matched: '+pairMatched;showToast('Match!');pairSel=null;if(pairMatched>=pairItems.length)showToast('All matched! 🏆');}
+else{showToast('Wrong pair',1000,false);pairSel.classList.remove('bg-emerald-100');pairSel=null;}}
+
+const clues=[
+  {q:'I am flat and show the Earth. What am I?',a:'Map',o:['Map','Globe only','Only photo','Only song']},
+  {q:'I am a sphere model of Earth. What am I?',a:'Globe',o:['Globe','Only flat map','Only chart','Only list']},
+  {q:'I show soil, rivers, climate. What kind of map?',a:'Physical map',o:['Physical map','Political only','Population only','Economic only']},
+  {q:'I show states and districts. What kind?',a:'Political / cultural map',o:['Political / cultural map','Soil map','Climate map','River map']},
+  {q:'I live on your phone and guide your trip. What am I?',a:'Digital map',o:['Digital map','Only paper atlas','Only blank page','Only globe in lab']}
+];
+function initClue(){mcq('clueQ','clueOpts',clues,initClue);}
+
+const sortItems=[
+  {q:'Soil map',phys:true},{q:'Political map',phys:false},{q:'Climate map',phys:true},
+  {q:'Population map',phys:false},{q:'River map',phys:true},{q:'Transportation map',phys:false},
+  {q:'Vegetation map',phys:true},{q:'Economic map',phys:false},{q:'Physiographic map',phys:true}
+];
+let sortOk=true;
+function initSort(){const it=sortItems[Math.floor(Math.random()*sortItems.length)];sortOk=it.phys;document.getElementById('sortQ').innerHTML=it.q;}
+function checkSort(ans){if(ans===sortOk){showToast('Correct!');setTimeout(initSort,700);}else showToast('Not correct',1200,false);}
+
+const fillBank=[
+  {q:'_____ maps show natural features.',a:'Physical',o:['Physical','Cultural','Only digital','Only blank']},
+  {q:'_____ maps show man-made features.',a:'Cultural',o:['Cultural','Physical','Only climate','Only soil']},
+  {q:'A _____ is a spherical model of Earth.',a:'globe',o:['globe','flat map','chart','list']},
+  {q:'Maps on mobiles are _____ maps.',a:'digital',o:['digital','only paper','only stone','only cloth']},
+  {q:'_____ map of Kerala shows districts.',a:'Political',o:['Political','Soil','Climate','Vegetation']}
+];
+function initFill(){mcq('fillQ','fillOpts',fillBank,initFill);}
+
+const quizData=[
+  {q:'Flat representation of Earth?',o:['Map','Only globe','Only photo','Only chart'],a:0},
+  {q:'Spherical model of Earth?',o:['Globe','Only flat map','Only atlas page','Only poster'],a:0},
+  {q:'Natural features maps?',o:['Physical maps','Only political','Only population','Only economic'],a:0},
+  {q:'Man-made features maps?',o:['Cultural maps','Only climate','Only soil','Only river'],a:0},
+  {q:'Maps on phones?',o:['Digital maps','Only paper','Only globes','Only sketches'],a:0},
+  {q:'Soil map is?',o:['Physical','Cultural','Neither','Only political'],a:0},
+  {q:'Political map is?',o:['Cultural','Physical','Only climate','Only soil'],a:0},
+  {q:'True shape better on?',o:['Globe','Flat map only','Only sketch','Only photo'],a:0},
+  {q:'Easy to carry?',o:['Map','Globe always','Only satellite','Only rock'],a:0},
+  {q:'Districts of Kerala on?',o:['Political map','Soil map','Climate map','Vegetation map'],a:0},
+  {q:'GPS helps?',o:['Location and navigation','Only cooking','Only printing','Only painting'],a:0},
+  {q:'Climate map is?',o:['Physical','Cultural','Only political','Only transport'],a:0},
+  {q:'Population map is?',o:['Cultural','Physical','Only river','Only soil'],a:0},
+  {q:'Transportation map is?',o:['Cultural','Physical','Only climate','Only vegetation'],a:0},
+  {q:'Legend shows?',o:['Meaning of symbols','Only author','Only page number','Only date'],a:0},
+  {q:'Scale helps?',o:['Measure distance','Only colour','Only title','Only fold'],a:0},
+  {q:'Why different maps?',o:['Each focuses on specific content','One map always enough','No purpose','Only decoration'],a:0},
+  {q:'Digital map advantage?',o:['Updated, zoom, navigation','Never update','Cannot zoom','No directions'],a:0},
+  {q:'River map is?',o:['Physical','Cultural','Only political','Only population'],a:0},
+  {q:'Function of map related to?',o:['Its content / title','Only paper size','Only ink colour','Only print date'],a:0}
+];
+let qi=0,qs=0,curCorrect=0;
+function initQuiz(){qi=0;qs=0;document.getElementById('quizResultArea').style.display='none';document.getElementById('quizQuestionArea').style.display='block';loadQ();}
+function loadQ(){document.getElementById('quizProgress').innerText=(qi+1)+'/20';const q=quizData[qi];document.getElementById('questionText').innerHTML=(qi+1)+'. '+q.q;const og=document.getElementById('optionsGrid');og.innerHTML='';
+const opts=q.o.map((t,i)=>({t:t,ok:i===q.a}));const shuffled=shuffle(opts);curCorrect=shuffled.findIndex(x=>x.ok);
+shuffled.forEach((o,i)=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerHTML=o.t;b.onclick=()=>chkQ(i,b);og.appendChild(b);});}
+function chkQ(i,btn){document.querySelectorAll('#optionsGrid .quiz-opt').forEach(b=>b.disabled=true);if(i===curCorrect){btn.classList.add('bg-green-100','border-green-500');qs++;showToast('Correct!',700);}
+else{btn.classList.add('bg-red-100','border-red-500');document.querySelectorAll('#optionsGrid .quiz-opt')[curCorrect].classList.add('bg-green-100','border-green-500');showToast('Wrong',700,false);}
+setTimeout(()=>{qi++;if(qi<quizData.length)loadQ();else{document.getElementById('quizQuestionArea').style.display='none';document.getElementById('quizResultArea').style.display='block';document.getElementById('finalScore').innerText=qs;}},1000);}
+let mL=null,mR=null;
+function selM(side,el){if(el.classList.contains('matched'))return;document.querySelectorAll('#match-'+side+' .match-item:not(.matched)').forEach(i=>i.classList.remove('selected'));el.classList.add('selected');
+if(side==='left')mL=el;else mR=el;if(mL&&mR){if(mL.dataset.id===mR.dataset.id){mL.className=mR.className='match-item matched';showToast('Match!',800);}else{showToast('Wrong',800,false);mL.classList.remove('selected');mR.classList.remove('selected');}mL=mR=null;}}
+function resetM(){document.querySelectorAll('#matchScreen .match-item').forEach(e=>e.className='match-item');mL=mR=null;}
+
+function showHint(hid,fid){
+  const h=document.getElementById(hid);const f=document.getElementById(fid);
+  if(h){h.classList.toggle('hidden');}
+  if(f){f.innerText=h&&!h.classList.contains('hidden')?'Compare with your answer':'';}
+}
+function checkAllShort(n){
+  let filled=0;
+  for(let i=0;i<n;i++){const t=document.getElementById('sa'+i);if(t&&t.value.trim().length>10)filled++;}
+  showToast(filled+' / '+n+' answers written');
+}
+function checkAllWrite(n){
+  let filled=0;
+  for(let i=0;i<n;i++){const t=document.getElementById('wa'+i);if(t&&t.value.trim().length>20)filled++;}
+  showToast(filled+' / '+n+' answers written');
+}
+
+function downloadPDF(){html2pdf().set({margin:12,filename:'Std7_SS_Unit9_Maps_Technology_Test.pdf',html2canvas:{scale:2},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(document.getElementById('printableQP')).save();}
+</script>
+</body>
+</html>
